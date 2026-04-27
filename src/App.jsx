@@ -2,24 +2,23 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Outlet, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./components/Pages/Home";
-import LivingRoom from "./components/Pages/LivingRoom.jsx";
-import BedRoom from "./components/Pages/BedRoom.jsx";
-import Kitchen from "./components/Pages/Kitchen.jsx";
-import DiningRoom from "./components/Pages/Dining.jsx";
-import Decor from "./components/Pages/Decor.jsx";
-import Outdoor from "./components/Pages/Outdoors.jsx";
+
+import Suppliment from "./components/Pages/Suppliment.jsx";
 import Footer from "./components/Footer";
 import About from "./components/Ourstory";
-import Gallery from "./components/Pages/HomeGalary.jsx";
+
 // import Chefs from "./components/Pages/OurChefs";
 import PrivacyPolicy from "./components/Pages/Privacy";
 import TermsOfService from "./components/Pages/Terms.jsx";
 import FAQ from "./components/Pages/FAQ.jsx";
+import Parmacy from "./components/Pages/parmacy.jsx";
+import Fitness from "./components/Pages/fitness.jsx";
 
 // ✅ Admin Pages
 import Login from "./Admin/Login.jsx";
 import SignUp from "./Admin/SignUp.jsx";
 import AdminPanel from "./Admin/AdminPanel.jsx";
+
 
 // ✅ NEW SMART LAYOUT - HIDES NAVBAR/FOOTER FOR ADMIN!
 function Layout({ children }) {
@@ -56,13 +55,12 @@ function App() {
       <Routes>
         {/* ✅ CUSTOMER PAGES - WITH LAYOUT */}
         <Route path="/" element={<Layout><Home /></Layout>} />
-         <Route path="/Living-Room" element={<Layout><LivingRoom/></Layout>} />
 
-        <Route path="/BedRoom" element={<Layout><BedRoom/></Layout>} />
-        <Route path="/Kitchen" element={<Layout><Kitchen/></Layout>} />
-        <Route path="/dining-room" element={<Layout><DiningRoom/></Layout>} />
-        <Route path="/home-decor" element={<Layout><Decor /></Layout>} />
-        <Route path="/Outdoor" element={<Layout><Outdoor /></Layout>} />
+
+        <Route path="/Supplements" element={<Layout><Suppliment/></Layout>} />
+        <Route path="/Fitness" element={<Layout><Fitness/></Layout>} />
+        {/* <Route path="/Partners" element={<Layout><DiningRoom/></Layout>} /> */}
+       
         {/*
         <Route path="/casual-dining" element={<Layout><CasualDining /></Layout>} />
         <Route path="/desserts" element={<Layout><Desserts /></Layout>} />
@@ -70,12 +68,13 @@ function App() {
         <Route path="/mains" element={<Layout><Mains /></Layout>} />
         <Route path="/cafes-bakeries" element={<Layout><Bakery /></Layout>} /> */}
         <Route path="/about" element={<Layout><About /></Layout>} />
-        <Route path="/gallery" element={<Layout><Gallery /></Layout>} />
+        {/* <Route path="/gallery" element={<Layout><Gallery /></Layout>} /> */}
         {/* <Route path="/gallery" element={<Layout><Gallery /></Layout>} />
         <Route path="/chefs" element={<Layout><Chefs /></Layout>} /> */}
         <Route path="/privacy-policy" element={<Layout><PrivacyPolicy /></Layout>} />
         <Route path="/terms-of-service" element={<Layout><TermsOfService /></Layout>} />
         <Route path="/FAQ" element={<Layout><FAQ /></Layout>} />
+        <Route path="/parmacy" element={<Layout><Parmacy/></Layout>} />
         
         {/* ✅ ADMIN PAGES - NO LAYOUT! */}
         <Route path="/signup" element={<Layout><SignUp /></Layout>} />
