@@ -1,5 +1,6 @@
 import React from 'react';
-import MainBannerPic from "../assets/Mains/istockphoto-1323550767-2048x2048.jpg"
+import MainBannerPic from "../assets/Mains/Banner.jpg";
+
 
 const WellnessCard = () => {
   return (

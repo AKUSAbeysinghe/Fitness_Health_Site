@@ -1,21 +1,49 @@
-import React,{useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import FitnessBanner from "../../assets/Fitness/Mind & Body Harmony_ How Physical Activity Boosts Your Mood.jpg";
-
 
 /* ---------------- SUBCATEGORY IDS ---------------- */
 const SUBCATEGORY_IDS = {
-  CARDIO:1,
-  STRENGTH:2,
-  ACCESSORIES:3,
-  RECOVERY:4
+  CARDIO: 1,
+  STRENGTH: 2,
+  ACCESSORIES: 3,
+  RECOVERY: 4
 };
 
+/* ================= ICONS ================= */
 
+const DumbbellIcon = () => (
+<svg className="w-14 h-14" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+<path d="M6 9v6M18 9v6M4 10v4M20 10v4M8 8h8v8H8V8z"
+strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+);
+
+const FlameIcon = () => (
+<svg className="w-14 h-14" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+<path d="M12 2C10 6 14 7 12 12C10 17 6 18 6 22c4-2 10-2 12-8 2-6-2-10-6-12z"
+strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+);
+
+const HeartPulseIcon = () => (
+<svg className="w-14 h-14" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+<path d="M4 12h4l2-4 4 8 2-4h4"
+strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M2 12c0 6 6 10 10 12 4-2 10-6 10-12S16 2 12 6 2 6 2 12z"
+strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+);
+
+const LightningIcon = () => (
+<svg className="w-14 h-14" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+<path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"
+strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+);
 
 /* ================= HEADER ================= */
 
-const FitnessHeader=()=>{
-
+const FitnessHeader = () => {
 const [activeTab,setActiveTab]=useState("Overview");
 
 const tabs=[
@@ -28,26 +56,22 @@ const tabs=[
 return(
 <section className="bg-emerald-50/50 py-16 px-8">
 
-<div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+<div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center mb-16">
 
-{/* LEFT */}
 <div>
-
-<h4 className="text-[#2E7D56] font-semibold uppercase tracking-wide text-sm mb-4">
+<h4 className="text-[#2E7D56] font-semibold uppercase text-sm mb-4">
 Fitness
 </h4>
 
-<h2 className="text-5xl font-semibold text-gray-900 mb-6 leading-tight">
-Train stronger. <br/>
-Live healthier.
+<h2 className="text-5xl font-semibold text-gray-900 mb-6">
+Train stronger. <br/> Live healthier.
 </h2>
 
-<p className="text-lg text-gray-600 max-w-lg">
-Discover premium fitness equipment, training essentials
-and recovery solutions to support every wellness goal.
+<p className="text-gray-600 text-lg max-w-lg">
+Premium fitness equipment, training essentials and recovery tools.
 </p>
 
-<div className="mt-8 flex flex-wrap gap-4">
+<div className="mt-8 flex gap-4 flex-wrap">
 
 <a
 href="#fitness-products"
@@ -64,11 +88,8 @@ Get Expert Advice
 </a>
 
 </div>
-
 </div>
 
-
-{/* RIGHT IMAGE */}
 <div className="rounded-3xl overflow-hidden shadow-xl">
 <img
 src={FitnessBanner}
@@ -79,11 +100,7 @@ className="w-full h-[420px] object-cover"
 
 </div>
 
-
-
-{/* Tabs */}
-<div className="max-w-6xl mx-auto flex gap-8 flex-wrap border-b border-gray-200 pb-4">
-
+<div className="max-w-6xl mx-auto flex gap-8 border-b border-gray-200 pb-4 flex-wrap">
 {tabs.map(tab=>(
 <button
 key={tab}
@@ -97,55 +114,40 @@ activeTab===tab
 {tab}
 </button>
 ))}
-
 </div>
 
 </section>
-)
-
+);
 };
-
-
 
 /* ================= PRODUCT CARD ================= */
 
-const FitnessCard=({item})=>(
-
-<div className="bg-white rounded-3xl shadow-md border border-gray-100 overflow-hidden hover:shadow-2xl transition">
+const FitnessCard = ({ item }) => (
+<div className="bg-white rounded-3xl shadow-md border overflow-hidden hover:shadow-2xl transition">
 
 <div className="relative">
-
 <img
-src={
-item.image_url ||
-"https://via.placeholder.com/600x400?text=Fitness"
-}
+src={item.image_url || "https://via.placeholder.com/600x400?text=Fitness"}
 alt={item.name}
 className="w-full h-72 object-cover"
 />
 
-{item.popular &&(
-<div className="absolute top-4 left-4 bg-[#2E7D56] text-white px-4 py-1 rounded-full text-sm font-semibold">
+{item.popular && (
+<div className="absolute top-4 left-4 bg-[#2E7D56] text-white px-4 py-1 rounded-full text-sm">
 Top Pick
 </div>
 )}
 
-<div className="absolute top-4 right-4 bg-black/80 text-white px-4 py-2 rounded-full font-semibold">
+<div className="absolute top-4 right-4 bg-black/80 text-white px-4 py-2 rounded-full">
 Rs. {new Intl.NumberFormat("en-LK").format(item.price)}
 </div>
-
 </div>
 
-
 <div className="p-7">
-
-<h3 className="text-2xl font-semibold">
-{item.name}
-</h3>
+<h3 className="text-2xl font-semibold">{item.name}</h3>
 
 <p className="mt-3 text-gray-600 line-clamp-2">
-{item.description ||
-"Premium fitness equipment and accessories"}
+{item.description || "Premium fitness equipment"}
 </p>
 
 <a
@@ -154,51 +156,28 @@ className="block mt-6 text-center py-4 bg-[#2E7D56] text-white rounded-xl hover:
 >
 View Details
 </a>
-
 </div>
 
 </div>
 );
 
-
-
 /* ================= PRODUCT SECTION ================= */
 
-const ProductSection=({
-title,
-subtitle,
-items,
-bg
-})=>(
-
-<section
-id="fitness-products"
-className={`${bg} py-20 px-6`}
->
+const ProductSection = ({ title, subtitle, items, bg }) => (
+<section id="fitness-products" className={`${bg} py-20 px-6`}>
 
 <div className="text-center mb-14">
-
-<h2 className="text-4xl font-bold">
-{title}
-</h2>
-
-<p className="mt-4 text-gray-600">
-{subtitle}
-</p>
-
+<h2 className="text-4xl font-bold">{title}</h2>
+<p className="mt-4 text-gray-600">{subtitle}</p>
 </div>
-
 
 <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-10">
 
 {items.length ? (
-items.map(item=>(
-<FitnessCard
-key={item.id}
-item={item}
-/>
+items.map(item => (
+<FitnessCard key={item.id} item={item} />
 ))
-):(
+) : (
 <p className="col-span-3 text-center text-gray-500">
 No products available
 </p>
@@ -209,36 +188,18 @@ No products available
 </section>
 );
 
-
-
 /* ================= WHY CHOOSE ================= */
 
-const WhyChooseFitness=()=>{
+const WhyChooseFitness = () => {
 
-const benefits=[
-{
-icon:"🏋️",
-title:"Premium Equipment",
-desc:"High quality fitness gear built to perform"
-},
-{
-icon:"🔥",
-title:"Performance Focused",
-desc:"Train for strength endurance and results"
-},
-{
-icon:"💪",
-title:"Recovery Support",
-desc:"Support recovery and long term progress"
-},
-{
-icon:"⚡",
-title:"Expert Guidance",
-desc:"Fitness solutions backed by specialists"
-}
-]
+const benefits = [
+{ icon: <DumbbellIcon />, title: "Premium Equipment", desc: "Built for performance" },
+{ icon: <FlameIcon />, title: "Performance Focus", desc: "Train harder and smarter" },
+{ icon: <HeartPulseIcon />, title: "Recovery Support", desc: "Improve recovery time" },
+{ icon: <LightningIcon />, title: "Expert Guidance", desc: "Professional fitness support" }
+];
 
-return(
+return (
 <section className="bg-gray-50 py-20 px-6">
 
 <div className="max-w-7xl mx-auto text-center">
@@ -248,29 +209,20 @@ Why Choose Our Fitness Collection?
 </h2>
 
 <p className="mt-4 text-gray-600">
-Performance gear designed for every fitness journey.
+Designed for strength and performance.
 </p>
-
 
 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-14">
 
 {benefits.map((b,i)=>(
-<div
-key={i}
-className="bg-white rounded-3xl p-10 shadow-sm hover:shadow-lg"
->
+<div key={i} className="bg-white rounded-3xl p-10 shadow-sm hover:shadow-xl">
 
-<div className="text-5xl mb-5">
+<div className="w-24 h-24 mx-auto mb-6 flex items-center justify-center text-[#2E7D56] bg-emerald-50 rounded-3xl">
 {b.icon}
 </div>
 
-<h3 className="text-2xl font-semibold mb-4">
-{b.title}
-</h3>
-
-<p className="text-gray-600">
-{b.desc}
-</p>
+<h3 className="text-2xl font-semibold mb-3">{b.title}</h3>
+<p className="text-gray-600">{b.desc}</p>
 
 </div>
 ))}
@@ -280,39 +232,38 @@ className="bg-white rounded-3xl p-10 shadow-sm hover:shadow-lg"
 </div>
 
 </section>
-)
-
+);
 };
 
+/* ================= CTA (GREEN INNER CARD ONLY) ================= */
 
+const CallToAction = () => (
+<section className="py-24 px-6 bg-white">
 
-/* ================= CTA ================= */
+<div className="max-w-6xl mx-auto">
 
-const CallToAction=()=>(
-<section className="bg-gray-900 py-20 px-6 text-white text-center">
-
-<div className="max-w-4xl mx-auto">
+<div className="rounded-[32px] bg-[#2E7D56] px-10 md:px-20 py-20 text-center text-white shadow-xl">
 
 <h2 className="text-5xl font-bold">
 Ready To Reach Your Goals?
 </h2>
 
-<p className="mt-6 text-lg text-gray-300">
-Shop fitness essentials and take your training further.
+<p className="mt-6 text-lg text-emerald-100 max-w-2xl mx-auto">
+Start your fitness journey with premium gear and expert guidance.
 </p>
 
 <div className="mt-10 flex flex-wrap justify-center gap-5">
 
 <a
 href="/shop-fitness"
-className="px-10 py-4 bg-[#2E7D56] rounded-xl font-semibold"
+className="px-10 py-4 bg-white text-[#2E7D56] rounded-xl font-semibold hover:scale-105 transition"
 >
 Shop Fitness
 </a>
 
 <a
 href="/personal-training"
-className="px-10 py-4 border border-white rounded-xl hover:bg-white hover:text-black"
+className="px-10 py-4 border-2 border-white rounded-xl font-semibold hover:bg-white hover:text-[#2E7D56] transition"
 >
 Training Consultation
 </a>
@@ -321,30 +272,28 @@ Training Consultation
 
 </div>
 
+</div>
+
 </section>
 );
 
+/* ================= MAIN ================= */
 
+const Fitness = () => {
 
-/* ================= MAIN PAGE ================= */
-
-const Fitness=()=>{
-
-const [products,setProducts]=useState([]);
-const [loading,setLoading]=useState(true);
-const [error,setError]=useState("");
+const [products,setProducts] = useState([]);
+const [loading,setLoading] = useState(true);
+const [error,setError] = useState("");
 
 useEffect(()=>{
 
-const fetchProducts=async()=>{
-
-try{
-
-const res=await fetch(
+const fetchProducts = async () => {
+try {
+const res = await fetch(
 "http://localhost/your-api/get_products.php?category_id=6"
 );
 
-const data=await res.json();
+const data = await res.json();
 
 if(data.success){
 setProducts(data.data);
@@ -355,80 +304,37 @@ setError("Could not load products");
 }catch{
 setError("Failed to fetch products");
 }
-
 finally{
 setLoading(false);
 }
-
 };
 
 fetchProducts();
 
 },[]);
 
+const cardio = products.filter(i=>i.sub_category_id===SUBCATEGORY_IDS.CARDIO);
+const strength = products.filter(i=>i.sub_category_id===SUBCATEGORY_IDS.STRENGTH);
+const recovery = products.filter(i=>i.sub_category_id===SUBCATEGORY_IDS.ACCESSORIES || i.sub_category_id===SUBCATEGORY_IDS.RECOVERY);
 
-
-const cardio=products.filter(
-i=>i.sub_category_id===SUBCATEGORY_IDS.CARDIO
-);
-
-const strength=products.filter(
-i=>i.sub_category_id===SUBCATEGORY_IDS.STRENGTH
-);
-
-const recovery=products.filter(
-i=>
-i.sub_category_id===SUBCATEGORY_IDS.ACCESSORIES ||
-i.sub_category_id===SUBCATEGORY_IDS.RECOVERY
-);
-
-
-
-return(
+return (
 <div className="bg-white">
 
-{error &&(
-<div className="p-4 bg-red-100 text-red-700 text-center">
-{error}
-</div>
-)}
+{error && <div className="p-4 bg-red-100 text-red-700 text-center">{error}</div>}
 
-{loading &&(
-<div className="py-20 text-center">
-Loading Fitness Products...
-</div>
-)}
+{loading && <div className="py-20 text-center">Loading Fitness Products...</div>}
 
-<FitnessHeader/>
+<FitnessHeader />
 
-<ProductSection
-title="Cardio Equipment"
-subtitle="Support endurance, energy and movement."
-items={cardio}
-bg="bg-white"
-/>
+<ProductSection title="Cardio Equipment" subtitle="Endurance and cardio gear" items={cardio} bg="bg-white" />
+<ProductSection title="Strength Training" subtitle="Build muscle and power" items={strength} bg="bg-[#f7faf8]" />
+<ProductSection title="Accessories & Recovery" subtitle="Recovery and support tools" items={recovery} bg="bg-white" />
 
-<ProductSection
-title="Strength Training"
-subtitle="Build power with premium training gear."
-items={strength}
-bg="bg-[#f7faf8]"
-/>
-
-<ProductSection
-title="Accessories & Recovery"
-subtitle="Recovery tools and performance accessories."
-items={recovery}
-bg="bg-white"
-/>
-
-<WhyChooseFitness/>
-
-<CallToAction/>
+<WhyChooseFitness />
+<CallToAction />
 
 </div>
-)
-
+);
 };
 
 export default Fitness;

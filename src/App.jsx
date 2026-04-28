@@ -13,11 +13,13 @@ import TermsOfService from "./components/Pages/Terms.jsx";
 import FAQ from "./components/Pages/FAQ.jsx";
 import Parmacy from "./components/Pages/parmacy.jsx";
 import Fitness from "./components/Pages/fitness.jsx";
+import Contact from "./components/Pages/Contact.jsx";
 
 // ✅ Admin Pages
 import Login from "./Admin/Login.jsx";
 import SignUp from "./Admin/SignUp.jsx";
 import AdminPanel from "./Admin/AdminPanel.jsx";
+
 
 
 // ✅ NEW SMART LAYOUT - HIDES NAVBAR/FOOTER FOR ADMIN!
@@ -68,13 +70,12 @@ function App() {
         <Route path="/mains" element={<Layout><Mains /></Layout>} />
         <Route path="/cafes-bakeries" element={<Layout><Bakery /></Layout>} /> */}
         <Route path="/about" element={<Layout><About /></Layout>} />
-        {/* <Route path="/gallery" element={<Layout><Gallery /></Layout>} /> */}
-        {/* <Route path="/gallery" element={<Layout><Gallery /></Layout>} />
-        <Route path="/chefs" element={<Layout><Chefs /></Layout>} /> */}
+
         <Route path="/privacy-policy" element={<Layout><PrivacyPolicy /></Layout>} />
         <Route path="/terms-of-service" element={<Layout><TermsOfService /></Layout>} />
         <Route path="/FAQ" element={<Layout><FAQ /></Layout>} />
-        <Route path="/parmacy" element={<Layout><Parmacy/></Layout>} />
+        <Route path="/pharmacy" element={<Layout><Parmacy/></Layout>} />
+        <Route path="/contact" element={<Layout><Contact/></Layout>} />
         
         {/* ✅ ADMIN PAGES - NO LAYOUT! */}
         <Route path="/signup" element={<Layout><SignUp /></Layout>} />

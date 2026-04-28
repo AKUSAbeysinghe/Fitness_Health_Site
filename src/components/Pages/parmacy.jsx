@@ -1,215 +1,203 @@
-import React,{useState,useEffect} from "react";
-import BannerImageParmacy from "../../assets/Parmacy/parmacyBanner.jpg"
+import React, { useState, useEffect } from "react";
+import BannerImageParmacy from "../../assets/Parmacy/parmacyBanner.jpg";
 
 /* ---------------- SUBCATEGORY IDS ---------------- */
 const SUBCATEGORY_IDS = {
-  PRESCRIPTIONS:1,
-  OTC_MEDICINE:2,
-  VACCINATION:3,
-  WELLNESS_CARE:4
+  PRESCRIPTIONS: 1,
+  OTC_MEDICINE: 2,
+  VACCINATION: 3,
+  WELLNESS_CARE: 4
 };
 
+/* ================= ICONS ================= */
 
+const PillIcon = () => (
+  <svg className="w-14 h-14" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+    <path
+      d="M10 14L4.5 8.5a4.24 4.24 0 016-6L16 8m-6 6l7.5-7.5a4.24 4.24 0 016 6L16 20a4.24 4.24 0 01-6 0"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path d="M8 6l10 10" strokeLinecap="round" />
+  </svg>
+);
+
+const StethoscopeIcon = () => (
+  <svg className="w-14 h-14" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+    <path
+      d="M7 3v5a4 4 0 008 0V3M7 8a5 5 0 0010 0"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M17 13a4 4 0 104 4v-2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <circle cx="21" cy="14" r="1.5" />
+  </svg>
+);
+
+const FastIcon = () => (
+  <svg className="w-14 h-14" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+    <path
+      d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+const ShieldIcon = () => (
+  <svg className="w-14 h-14" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+    <path
+      d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6l7-3z"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path d="M9.5 12l2 2 3.5-4" strokeLinecap="round" />
+  </svg>
+);
 
 /* ================= HEADER ================= */
 
-const PharmacyHeader=()=>{
+const PharmacyHeader = () => {
+  const [activeTab,setActiveTab]=useState("Overview");
 
-const [activeTab,setActiveTab]=useState("Overview");
+  const tabs=[
+    "Overview",
+    "Prescriptions",
+    "Vaccinations",
+    "Consultations"
+  ];
 
-const tabs=[
-"Overview",
-"Prescriptions",
-"Vaccinations",
-"Consultations"
-];
+  return(
+    <section className="bg-emerald-50/50 py-16 px-8">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
 
-return(
-<section className="bg-emerald-50/50 py-16 px-8">
+        <div>
+          <h4 className="text-[#2E7D56] font-semibold uppercase tracking-wide text-sm mb-4">
+            Pharmacy
+          </h4>
 
-<div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+          <h2 className="text-5xl font-semibold text-gray-900 mb-6 leading-tight">
+            Care that's just <br/>
+            around the corner.
+          </h2>
 
-{/* LEFT */}
-<div>
+          <p className="text-lg text-gray-600 max-w-lg">
+            Trusted prescriptions, everyday essentials and expert
+            advice backed by certified pharmacists.
+          </p>
 
-<h4 className="text-[#2E7D56] font-semibold uppercase tracking-wide text-sm mb-4">
-Pharmacy
-</h4>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <a
+              href="#pharmacy-products"
+              className="px-8 py-4 bg-[#2E7D56] text-white rounded-full font-semibold hover:bg-[#256a47]"
+            >
+              Explore Pharmacy
+            </a>
 
-<h2 className="text-5xl font-semibold text-gray-900 mb-6 leading-tight">
-Care that's just <br/>
-around the corner.
-</h2>
+            <a
+              href="/consultation"
+              className="px-8 py-4 border border-gray-900 rounded-full font-semibold hover:bg-gray-900 hover:text-white"
+            >
+              Speak To Pharmacist
+            </a>
+          </div>
+        </div>
 
-<p className="text-lg text-gray-600 max-w-lg">
-Trusted prescriptions, everyday essentials and expert
-advice backed by certified pharmacists.
-</p>
+        <div className="rounded-3xl overflow-hidden shadow-xl">
+          <img
+            src={BannerImageParmacy}
+            alt="Pharmacy"
+            className="w-full h-[420px] object-cover"
+          />
+        </div>
+      </div>
 
-<div className="mt-8 flex flex-wrap gap-4">
-
-<a
-href="#pharmacy-products"
-className="px-8 py-4 bg-[#2E7D56] text-white rounded-full font-semibold hover:bg-[#256a47]"
->
-Explore Pharmacy
-</a>
-
-<a
-href="/consultation"
-className="px-8 py-4 border border-gray-900 rounded-full font-semibold hover:bg-gray-900 hover:text-white"
->
-Speak To Pharmacist
-</a>
-
-</div>
-
-</div>
-
-
-{/* RIGHT IMAGE */}
-<div className="rounded-3xl overflow-hidden shadow-xl">
-<img
-src={BannerImageParmacy}
-alt="Pharmacy"
-className="w-full h-[420px] object-cover"
-/>
-</div>
-
-</div>
-
-
-
-{/* TABS */}
-<div className="max-w-6xl mx-auto flex items-center gap-8 border-b border-gray-200 pb-4 flex-wrap">
-
-{tabs.map(tab=>(
-<button
-key={tab}
-onClick={()=>setActiveTab(tab)}
-className={`pb-4 text-lg font-medium transition ${
-activeTab===tab
-? "text-gray-900 border-b-2 border-gray-900"
-: "text-gray-500 hover:text-gray-700"
-}`}
->
-{tab}
-</button>
-))}
-
-</div>
-
-</section>
-)
-
+      <div className="max-w-6xl mx-auto flex items-center gap-8 border-b border-gray-200 pb-4 flex-wrap">
+        {tabs.map(tab=>(
+          <button
+            key={tab}
+            onClick={()=>setActiveTab(tab)}
+            className={`pb-4 text-lg font-medium transition ${
+              activeTab===tab
+              ? "text-gray-900 border-b-2 border-gray-900"
+              : "text-gray-500 hover:text-gray-700"
+            }`}
+          >
+            {tab}
+          </button>
+        ))}
+      </div>
+    </section>
+  );
 };
-
-
 
 /* ================= PRODUCT CARD ================= */
 
 const PharmacyCard=({item})=>(
+  <div className="bg-white rounded-3xl shadow-md border border-gray-100 overflow-hidden hover:shadow-2xl transition">
+    <div className="relative">
+      <img
+        src={item.image_url || "https://via.placeholder.com/600x400?text=Pharmacy"}
+        alt={item.name}
+        className="w-full h-72 object-cover"
+      />
 
-<div className="bg-white rounded-3xl shadow-md border border-gray-100 overflow-hidden hover:shadow-2xl transition">
+      {item.popular &&(
+        <div className="absolute top-4 left-4 bg-[#2E7D56] text-white px-4 py-1 rounded-full text-sm font-semibold">
+          Popular
+        </div>
+      )}
 
-<div className="relative">
+      <div className="absolute top-4 right-4 bg-black/80 text-white px-4 py-2 rounded-full font-semibold">
+        Rs. {new Intl.NumberFormat("en-LK").format(item.price)}
+      </div>
+    </div>
 
-<img
-src={
-item.image_url ||
-"https://via.placeholder.com/600x400?text=Pharmacy"
-}
-alt={item.name}
-className="w-full h-72 object-cover"
-/>
+    <div className="p-7">
+      <h3 className="text-2xl font-semibold">
+        {item.name}
+      </h3>
 
-{item.popular &&(
-<div className="absolute top-4 left-4 bg-[#2E7D56] text-white px-4 py-1 rounded-full text-sm font-semibold">
-Popular
-</div>
-)}
+      <p className="mt-3 text-gray-600 line-clamp-2">
+        {item.description || "Trusted pharmacy essentials for everyday care"}
+      </p>
 
-<div className="absolute top-4 right-4 bg-black/80 text-white px-4 py-2 rounded-full font-semibold">
-Rs. {new Intl.NumberFormat("en-LK").format(item.price)}
-</div>
-
-</div>
-
-
-<div className="p-7">
-
-<h3 className="text-2xl font-semibold">
-{item.name}
-</h3>
-
-<p className="mt-3 text-gray-600 line-clamp-2">
-{item.description ||
-"Trusted pharmacy essentials for everyday care"}
-</p>
-
-<a
-href={`/product/${item.id}`}
-className="block mt-6 text-center py-4 bg-[#2E7D56] text-white rounded-xl hover:bg-[#256a47]"
->
-View Details
-</a>
-
-</div>
-
-</div>
-
+      <a
+        href={`/product/${item.id}`}
+        className="block mt-6 text-center py-4 bg-[#2E7D56] text-white rounded-xl hover:bg-[#256a47]"
+      >
+        View Details
+      </a>
+    </div>
+  </div>
 );
-
-
 
 /* ================= PRODUCT SECTION ================= */
 
-const ProductSection=({
-title,
-subtitle,
-items,
-bg
-})=>(
-
-<section
-id="pharmacy-products"
-className={`${bg} py-20 px-6`}
->
-
+const ProductSection=({title,subtitle,items,bg})=>(
+<section id="pharmacy-products" className={`${bg} py-20 px-6`}>
 <div className="text-center mb-14">
-
-<h2 className="text-4xl font-bold">
-{title}
-</h2>
-
-<p className="mt-4 text-gray-600">
-{subtitle}
-</p>
-
+<h2 className="text-4xl font-bold">{title}</h2>
+<p className="mt-4 text-gray-600">{subtitle}</p>
 </div>
 
-
 <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-
 {items.length ? (
 items.map(item=>(
-<PharmacyCard
-key={item.id}
-item={item}
-/>
+<PharmacyCard key={item.id} item={item}/>
 ))
 ):(
 <p className="col-span-3 text-center text-gray-500">
 No products available
 </p>
 )}
-
 </div>
-
 </section>
 );
-
-
 
 /* ================= WHY CHOOSE ================= */
 
@@ -217,30 +205,29 @@ const WhyChoosePharmacy=()=>{
 
 const benefits=[
 {
-icon:"💊",
+icon:<PillIcon/>,
 title:"Trusted Medicines",
 desc:"Reliable prescription and health products"
 },
 {
-icon:"🩺",
+icon:<StethoscopeIcon/>,
 title:"Professional Advice",
 desc:"Support from certified pharmacists"
 },
 {
-icon:"⚡",
+icon:<FastIcon/>,
 title:"Fast Access",
 desc:"Quick access to care and essentials"
 },
 {
-icon:"🛡️",
+icon:<ShieldIcon/>,
 title:"Quality Assurance",
 desc:"Safe trusted healthcare products"
 }
-]
+];
 
 return(
 <section className="bg-gray-50 py-20 px-6">
-
 <div className="max-w-7xl mx-auto text-center">
 
 <h2 className="text-4xl font-bold">
@@ -256,10 +243,10 @@ Convenient healthcare support you can trust.
 {benefits.map((b,i)=>(
 <div
 key={i}
-className="bg-white rounded-3xl p-10 shadow-sm hover:shadow-lg"
+className="bg-white rounded-3xl p-10 shadow-sm hover:shadow-xl transition"
 >
 
-<div className="text-5xl mb-5">
+<div className="w-24 h-24 mx-auto mb-6 rounded-3xl bg-emerald-50 flex items-center justify-center text-[#2E7D56]">
 {b.icon}
 </div>
 
@@ -275,28 +262,22 @@ className="bg-white rounded-3xl p-10 shadow-sm hover:shadow-lg"
 ))}
 
 </div>
-
 </div>
-
 </section>
 )
-
 };
 
-
-
-/* ================= CTA ================= */
+/* ================= GREEN THEMED CTA ================= */
 
 const CallToAction=()=>(
-<section className="bg-gray-900 py-20 px-6 text-white text-center">
-
+<section className="bg-[#2E7D56] py-24 px-6 text-white text-center">
 <div className="max-w-4xl mx-auto">
 
 <h2 className="text-5xl font-bold">
 Need Help With Your Health?
 </h2>
 
-<p className="mt-6 text-lg text-gray-300">
+<p className="mt-6 text-lg text-emerald-100">
 Refill prescriptions or consult a pharmacist today.
 </p>
 
@@ -304,14 +285,14 @@ Refill prescriptions or consult a pharmacist today.
 
 <a
 href="/refill"
-className="px-10 py-4 bg-[#2E7D56] rounded-xl font-semibold"
+className="px-10 py-4 bg-white text-[#2E7D56] rounded-xl font-semibold hover:scale-105 transition"
 >
 Refill Prescription
 </a>
 
 <a
 href="/consultation"
-className="px-10 py-4 border border-white rounded-xl hover:bg-white hover:text-black"
+className="px-10 py-4 border-2 border-white rounded-xl font-semibold hover:bg-white hover:text-[#2E7D56] transition"
 >
 Book Consultation
 </a>
@@ -319,13 +300,10 @@ Book Consultation
 </div>
 
 </div>
-
 </section>
 );
 
-
-
-/* ================= MAIN PAGE ================= */
+/* ================= MAIN ================= */
 
 const Pharmacy=()=>{
 
@@ -338,7 +316,6 @@ useEffect(()=>{
 const fetchProducts=async()=>{
 
 try{
-
 const res=await fetch(
 "http://localhost/your-api/get_products.php?category_id=4"
 );
@@ -365,8 +342,6 @@ fetchProducts();
 
 },[]);
 
-
-
 const prescriptions=products.filter(
 i=>i.sub_category_id===SUBCATEGORY_IDS.PRESCRIPTIONS
 );
@@ -380,8 +355,6 @@ i=>
 i.sub_category_id===SUBCATEGORY_IDS.VACCINATION ||
 i.sub_category_id===SUBCATEGORY_IDS.WELLNESS_CARE
 );
-
-
 
 return(
 <div className="bg-white">
@@ -427,7 +400,6 @@ bg="bg-white"
 
 </div>
 )
-
 };
 
 export default Pharmacy;

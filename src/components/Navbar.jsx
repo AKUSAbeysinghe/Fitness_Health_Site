@@ -13,15 +13,26 @@ const Navbar = () => {
 
       {/* Nav Links */}
       <div className="flex items-center gap-8 text-gray-600 font-medium">
-        <a href="/parmacy" className="hover:text-[#2E7D56] transition-colors">Pharmacy</a>
-        <a href="/Supplements" className="hover:text-[#2E7D56] transition-colors">Supplements</a>
-        <a href="/Fitness" className="hover:text-[#2E7D56] transition-colors">Fitness</a>
-        <a href="/Partners" className="hover:text-[#2E7D56] transition-colors">Partners</a>
+        <a href="/" className="hover:text-[#2E7D56] transition-colors">
+          Home
+        </a>
+        <a href="/pharmacy" className="hover:text-[#2E7D56] transition-colors">
+          Pharmacy
+        </a>
+        <a href="/supplements" className="hover:text-[#2E7D56] transition-colors">
+          Supplements
+        </a>
+        <a href="/fitness" className="hover:text-[#2E7D56] transition-colors">
+          Fitness
+        </a>
+        <a href="/contact" className="hover:text-[#2E7D56] transition-colors">
+          Contact
+        </a>
       </div>
 
       {/* CTA Button */}
       <button className="px-6 py-2 bg-[#2E7D56] text-white rounded-full font-semibold hover:bg-[#256a47] transition-all">
-        Get started
+        Get Started
       </button>
     </nav>
   );
