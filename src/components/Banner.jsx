@@ -1,10 +1,10 @@
 import React from 'react';
-import MainBannerPic from "../assets/Mains/Banner.jpg";
+import MainBannerPic from "../assets/Mains/Banner.png";
 
 
 const WellnessCard = () => {
   return (
-    <div className="w-full bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 transition-transform duration-300 hover:scale-105">
+    <div className="w-full bg-white overflow-hidden shadow-lg border border-gray-100 transition-transform duration-300 hover:scale-105">
       
       {/* Image */}
       <div className="w-full h-[500px] overflow-hidden">

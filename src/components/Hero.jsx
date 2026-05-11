@@ -1,5 +1,5 @@
 import React from 'react';
-import Mains from '../assets/Mains/Banner.jpg';
+import Mains from '../assets/Mains/Banner.png';
 
 const HeroSection = () => {
   return (
