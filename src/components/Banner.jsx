@@ -1,8 +1,13 @@
 import React from 'react';
 import MainBannerPic from "../assets/Mains/Banner.png";
 
-
 const WellnessCard = () => {
+  const whatsappNumber = "919876543210"; // ← Change to your actual WhatsApp number
+
+  const handleWhatsAppClick = () => {
+    window.open(`https://wa.me/${whatsappNumber}`, '_blank');
+  };
+
   return (
     <div className="w-full bg-white overflow-hidden shadow-lg border border-gray-100 transition-transform duration-300 hover:scale-105">
       
@@ -26,7 +31,11 @@ const WellnessCard = () => {
           nutritional support, and professional medical guidance in one ecosystem.
         </p>
 
-        <button className="text-[#2E7D56] font-semibold text-lg flex items-center gap-2 hover:gap-3 transition-all">
+        {/* WhatsApp Button */}
+        <button
+          onClick={handleWhatsAppClick}
+          className="text-[#2E7D56] font-semibold text-lg flex items-center gap-2 hover:gap-3 transition-all"
+        >
           Learn more <span>→</span>
         </button>
       </div>

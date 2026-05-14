@@ -1,8 +1,15 @@
 import React from 'react';
-import ParamacyPic from "../assets/Parmacy/Parmacy.jpg"
+import { useNavigate } from 'react-router-dom';   // ← Add this
+import ParamacyPic from "../assets/Parmacy/Parmacy.jpg";
 
 const PharmacySection = () => {
+  const navigate = useNavigate();   // ← Add this
+
   const partners = ['Walgreens', 'CVS', 'Boots', 'Rite Aid'];
+
+  const handleExplore = () => {
+    navigate('/pharmacy');   // Change this path if your route is different
+  };
 
   return (
     <section className="bg-[#FCFAF7] py-16 px-8">
@@ -25,13 +32,19 @@ const PharmacySection = () => {
           {/* Partner Chips */}
           <div className="flex flex-wrap gap-3 mb-8">
             {partners.map((name) => (
-              <span key={name} className="px-5 py-2 bg-[#F0EFE9] rounded-full text-gray-800 font-medium">
+              <span 
+                key={name} 
+                className="px-5 py-2 bg-[#F0EFE9] rounded-full text-gray-800 font-medium"
+              >
                 {name}
               </span>
             ))}
           </div>
 
-          <button className="flex items-center gap-2 px-6 py-3 bg-[#E7E3D8] hover:bg-[#dcd8cc] text-gray-900 rounded-full font-medium transition-all">
+          <button 
+            onClick={handleExplore}
+            className="flex items-center gap-2 px-6 py-3 bg-[#E7E3D8] hover:bg-[#dcd8cc] text-gray-900 rounded-full font-medium transition-all"
+          >
             Explore ↗
           </button>
         </div>

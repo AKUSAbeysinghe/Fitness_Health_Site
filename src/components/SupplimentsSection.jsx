@@ -1,5 +1,7 @@
 import React from 'react';
-import SupplimentSecpic from "../assets/Suppliments/The Gut-Skin Axis + Acne Breakouts _ CLEARSTEM Skincare.jpg"
+import { Link } from 'react-router-dom';
+import SupplimentSecpic from "../assets/Suppliments/The Gut-Skin Axis + Acne Breakouts _ CLEARSTEM Skincare.jpg";
+
 const SupplementsSection = () => {
   const brands = ['GNC', 'Vitamin Shoppe', 'Holland & Barrett', 'Optimum Nutrition'];
 
@@ -39,9 +41,13 @@ const SupplementsSection = () => {
             ))}
           </div>
 
-          <button className="flex items-center gap-2 px-6 py-3 bg-[#E7E3D8] hover:bg-[#dcd8cc] text-gray-900 rounded-full font-medium transition-all">
+          {/* Updated Button with Navigation */}
+          <Link 
+            to="/Supplements"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#E7E3D8] hover:bg-[#dcd8cc] text-gray-900 rounded-full font-medium transition-all"
+          >
             Explore ↗
-          </button>
+          </Link>
         </div>
       </div>
     </section>

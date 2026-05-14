@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
 import BannerImageParmacy from "../../assets/Parmacy/parmacyBanner.jpg";
 
+// ================= WHATSAPP CONFIG =================
+const WHATSAPP_NUMBER = "94712345678";   // ← Change this to your real WhatsApp number
+
+const openWhatsApp = (message = "Hello, I need help with pharmacy products") => {
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank');
+};
+
 /* ================= ICONS ================= */
 const PillIcon = () => (
   <svg className="w-14 h-14" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
@@ -47,12 +55,20 @@ const PharmacyHeader = () => {
             Trusted prescriptions, everyday essentials and expert advice backed by certified pharmacists.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
-            <a href="#pharmacy-products" className="px-8 py-4 bg-[#2E7D56] text-white rounded-full font-semibold hover:bg-[#256a47]">
+            <a 
+              href="#pharmacy-products" 
+              className="px-8 py-4 bg-[#2E7D56] text-white rounded-full font-semibold hover:bg-[#256a47]"
+            >
               Explore Pharmacy
             </a>
-            <a href="/consultation" className="px-8 py-4 border border-gray-900 rounded-full font-semibold hover:bg-gray-900 hover:text-white">
+            
+            {/* WhatsApp Button */}
+            <button 
+              onClick={() => openWhatsApp("Hi, I would like to speak with a pharmacist")}
+              className="px-8 py-4 border border-gray-900 rounded-full font-semibold hover:bg-gray-900 hover:text-white transition"
+            >
               Speak To Pharmacist
-            </a>
+            </button>
           </div>
         </div>
 
@@ -112,12 +128,12 @@ const PharmacyCard = ({ item }) => (
       <p className="mt-3 text-gray-600 line-clamp-2">
         {item.description || "Trusted pharmacy essentials for everyday care"}
       </p>
-      <a
-        href={`/product/${item.id}`}
-        className="block mt-6 text-center py-4 bg-[#2E7D56] text-white rounded-xl hover:bg-[#256a47]"
+      <button
+        onClick={() => openWhatsApp(`Hi, I'm interested in ${item.name}`)}
+        className="block mt-6 w-full text-center py-4 bg-[#2E7D56] text-white rounded-xl hover:bg-[#256a47] transition"
       >
-        View Details
-      </a>
+        Ask on WhatsApp
+      </button>
     </div>
   </div>
 );
@@ -140,7 +156,7 @@ const ProductSection = ({ title, subtitle, items, bg }) => (
   </section>
 );
 
-/* ================= WHY CHOOSE & CTA ================= */
+/* ================= WHY CHOOSE ================= */
 const WhyChoosePharmacy = () => {
   const benefits = [
     { icon: <PillIcon />, title: "Trusted Medicines", desc: "Reliable prescription and health products" },
@@ -171,28 +187,35 @@ const WhyChoosePharmacy = () => {
   );
 };
 
-
-
+/* ================= CALL TO ACTION ================= */
 const CallToAction = () => (
   <section className="py-24 px-6 bg-white">
     <div className="max-w-6xl mx-auto">
       <div className="rounded-[32px] bg-[#2E7D56] px-10 md:px-20 py-20 text-center text-white shadow-xl">
         <h2 className="text-5xl font-bold">Need Help With Your Health?</h2>
         <p className="mt-6 text-lg text-emerald-100 max-w-2xl mx-auto">
-        Refill prescriptions or consult a pharmacist today.
+          Refill prescriptions or consult a pharmacist today.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-5">
-          <a href="/shop-fitness" className="px-10 py-4 bg-white text-[#2E7D56] rounded-xl font-semibold hover:scale-105 transition">
-          Refill Prescription
-          </a>
-          <a href="/personal-training" className="px-10 py-4 border-2 border-white rounded-xl font-semibold hover:bg-white hover:text-[#2E7D56] transition">
-          Book Consultation
-          </a>
+          <button 
+            onClick={() => openWhatsApp("Hi, I want to refill my prescription")}
+            className="px-10 py-4 bg-white text-[#2E7D56] rounded-xl font-semibold hover:scale-105 transition"
+          >
+            Refill Prescription
+          </button>
+          
+          <button 
+            onClick={() => openWhatsApp("Hi, I would like to book a consultation with a pharmacist")}
+            className="px-10 py-4 border-2 border-white rounded-xl font-semibold hover:bg-white hover:text-[#2E7D56] transition"
+          >
+            Book Consultation
+          </button>
         </div>
       </div>
     </div>
   </section>
 );
+
 /* ================= MAIN ================= */
 const Pharmacy = () => {
   const [products, setProducts] = useState([]);
@@ -202,7 +225,6 @@ const Pharmacy = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        // Corrected: Pharmacy category ID is 1
         const res = await fetch("http://localhost/pharmacy-project/api/get_products.php?category_id=1");
         const data = await res.json();
 
@@ -221,7 +243,6 @@ const Pharmacy = () => {
     fetchProducts();
   }, []);
 
-  // Filter by subcategory name
   const prescriptions = products.filter(i => i.sub_category_name?.toLowerCase().includes("prescription"));
   const otc = products.filter(i => 
     i.sub_category_name?.toLowerCase().includes("everyday") || 
@@ -251,7 +272,7 @@ const Pharmacy = () => {
         title="Everyday Health Essentials"
         subtitle="OTC products and everyday wellness support."
         items={otc}
-        bg="bg-[#f7faf8]}"
+        bg="bg-[#f7faf8]"
       />
 
       <ProductSection

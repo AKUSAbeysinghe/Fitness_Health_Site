@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Outlet, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+
 import Navbar from "./components/Navbar";
 import Home from "./components/Pages/Home";
 
@@ -7,7 +8,6 @@ import Suppliment from "./components/Pages/Suppliment.jsx";
 import Footer from "./components/Footer";
 import About from "./components/Ourstory";
 
-// import Chefs from "./components/Pages/OurChefs";
 import PrivacyPolicy from "./components/Pages/Privacy";
 import TermsOfService from "./components/Pages/Terms.jsx";
 import FAQ from "./components/Pages/FAQ.jsx";
@@ -20,28 +20,34 @@ import Login from "./Admin/Login.jsx";
 import SignUp from "./Admin/SignUp.jsx";
 import AdminPanel from "./Admin/AdminPanel.jsx";
 
+// ✅ Import ScrollToTop
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
-
-// ✅ NEW SMART LAYOUT - HIDES NAVBAR/FOOTER FOR ADMIN!
+// ✅ Smart Layout
 function Layout({ children }) {
   const location = useLocation();
+  
   const hideLayout = ["/login", "/signup", "/admin", "/admin-lookbook"].includes(location.pathname);
 
   return (
     <div className="bg-[#fcf8f3] text-black font-sans min-h-screen flex flex-col">
-      {/* ✅ NAVBAR - HIDE FOR ADMIN */}
+      
+      {/* ScrollToTop - Best Place */}
+      <ScrollToTop />
+
+      {/* NAVBAR - Hide for Admin */}
       {!hideLayout && (
         <div className="pt-10 px-10 pb-0 flex-shrink-0">
           <Navbar />
         </div>
       )}
       
-      {/* ✅ CONTENT */}
+      {/* CONTENT */}
       <div className="pt-10 px-10 pb-0 flex-1">
         {children}
       </div>
       
-      {/* ✅ FOOTER - HIDE FOR ADMIN */}
+      {/* FOOTER - Hide for Admin */}
       {!hideLayout && (
         <div className="pt-0 pb-10 px-10 flex-shrink-0">
           <Footer />
@@ -55,34 +61,24 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* ✅ CUSTOMER PAGES - WITH LAYOUT */}
+        {/* Customer Pages */}
         <Route path="/" element={<Layout><Home /></Layout>} />
-
-
-        <Route path="/Supplements" element={<Layout><Suppliment/></Layout>} />
-        <Route path="/Fitness" element={<Layout><Fitness/></Layout>} />
-        {/* <Route path="/Partners" element={<Layout><DiningRoom/></Layout>} /> */}
-       
-        {/*
-        <Route path="/casual-dining" element={<Layout><CasualDining /></Layout>} />
-        <Route path="/desserts" element={<Layout><Desserts /></Layout>} />
-        <Route path="/starts" element={<Layout><Starts /></Layout>} />
-        <Route path="/mains" element={<Layout><Mains /></Layout>} />
-        <Route path="/cafes-bakeries" element={<Layout><Bakery /></Layout>} /> */}
+        <Route path="/Supplements" element={<Layout><Suppliment /></Layout>} />
+        <Route path="/Fitness" element={<Layout><Fitness /></Layout>} />
         <Route path="/about" element={<Layout><About /></Layout>} />
 
         <Route path="/privacy-policy" element={<Layout><PrivacyPolicy /></Layout>} />
         <Route path="/terms-of-service" element={<Layout><TermsOfService /></Layout>} />
         <Route path="/FAQ" element={<Layout><FAQ /></Layout>} />
-        <Route path="/pharmacy" element={<Layout><Parmacy/></Layout>} />
-        <Route path="/contact" element={<Layout><Contact/></Layout>} />
-        
-        {/* ✅ ADMIN PAGES - NO LAYOUT! */}
+        <Route path="/pharmacy" element={<Layout><Parmacy /></Layout>} />
+        <Route path="/contact" element={<Layout><Contact /></Layout>} />
+
+        {/* Admin Pages */}
         <Route path="/signup" element={<Layout><SignUp /></Layout>} />
         <Route path="/login" element={<Layout><Login /></Layout>} />
         <Route path="/admin" element={<Layout><AdminPanel /></Layout>} />
-        
-        {/* ✅ 404 */}
+
+        {/* 404 */}
         <Route path="*" element={
           <Layout>
             <div className="text-center py-12 font-sans">

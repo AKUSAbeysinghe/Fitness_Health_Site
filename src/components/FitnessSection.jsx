@@ -1,5 +1,6 @@
 import React from 'react';
-import FitnessSec from  "../assets/Fitness/FitnessSec.jpg";
+import { Link } from 'react-router-dom';   // ← Import Link
+import FitnessSec from "../assets/Fitness/FitnessSec.jpg";
 
 const FitnessSection = () => {
   const gyms = ['Planet Fitness', 'Anytime Fitness', 'Equinox', 'Crunch'];
@@ -31,9 +32,13 @@ const FitnessSection = () => {
             ))}
           </div>
 
-          <button className="flex items-center gap-2 px-6 py-3 bg-[#E7E3D8] hover:bg-[#dcd8cc] text-gray-900 rounded-full font-medium transition-all">
+          {/* Updated Button with Navigation */}
+          <Link 
+            to="/Fitness"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#E7E3D8] hover:bg-[#dcd8cc] text-gray-900 rounded-full font-medium transition-all"
+          >
             Explore ↗
-          </button>
+          </Link>
         </div>
 
         {/* Image Side */}

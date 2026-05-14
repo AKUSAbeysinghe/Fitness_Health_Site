@@ -110,7 +110,7 @@ Our team is ready to support you.
 <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
 
 {/* LEFT TEXT */}
-<div>
+{/* <div>
 <h2 className="text-4xl font-bold mb-6">
 Send us a message
 </h2>
@@ -118,10 +118,10 @@ Send us a message
 <p className="text-gray-600 text-lg">
 We usually respond within 24 hours.
 </p>
-</div>
+</div> */}
 
 {/* FORM */}
-<form
+{/* <form
 onSubmit={handleSubmit}
 className="bg-white rounded-3xl shadow-md p-10 space-y-6"
 >
@@ -160,7 +160,7 @@ className="w-full py-4 bg-[#2E7D56] text-white rounded-xl font-semibold hover:bg
 Send Message
 </button>
 
-</form>
+</form> */}
 
 </div>
 
@@ -182,7 +182,9 @@ Our team is available to help you with orders, prescriptions and guidance.
 </p>
 
 <a
-href="/support"
+href="https://wa.me/94712345678"   // Change this number to your WhatsApp number
+target="_blank"
+rel="noopener noreferrer"
 className="inline-block mt-10 px-10 py-4 bg-white text-[#2E7D56] rounded-xl font-semibold hover:scale-105 transition"
 >
 Contact Support

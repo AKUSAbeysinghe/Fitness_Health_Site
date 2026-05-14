@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import FitnessBanner from "../../assets/Fitness/Mind & Body Harmony_ How Physical Activity Boosts Your Mood.jpg";
 
+// ================= WHATSAPP CONFIG =================
+const WHATSAPP_NUMBER = "94712345678";   // ← Change to your WhatsApp number (with country code)
+
+const openWhatsApp = (message = "Hello, I'm interested in Fitness products") => {
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank');
+};
+
 /* ================= ICONS ================= */
 const DumbbellIcon = () => (
   <svg className="w-14 h-14" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
@@ -44,12 +52,20 @@ const FitnessHeader = () => {
             Premium fitness equipment, training essentials and recovery tools.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
-            <a href="#fitness-products" className="px-8 py-4 bg-[#2E7D56] text-white rounded-full font-semibold hover:bg-[#256a47]">
+            <a 
+              href="#fitness-products" 
+              className="px-8 py-4 bg-[#2E7D56] text-white rounded-full font-semibold hover:bg-[#256a47]"
+            >
               Shop Fitness
             </a>
-            <a href="/fitness-consult" className="px-8 py-4 border border-gray-900 rounded-full font-semibold hover:bg-gray-900 hover:text-white">
+            
+            {/* Updated WhatsApp Button */}
+            <button 
+              onClick={() => openWhatsApp("Hi, I would like expert fitness advice")}
+              className="px-8 py-4 border border-gray-900 rounded-full font-semibold hover:bg-gray-900 hover:text-white transition"
+            >
               Get Expert Advice
-            </a>
+            </button>
           </div>
         </div>
 
@@ -75,7 +91,7 @@ const FitnessHeader = () => {
   );
 };
 
-/* ================= FIXED PRODUCT CARD (Main Fix Here) ================= */
+/* ================= PRODUCT CARD ================= */
 const FitnessCard = ({ item }) => (
   <div className="bg-white rounded-3xl shadow-md border border-gray-100 overflow-hidden hover:shadow-2xl transition">
     <div className="relative">
@@ -109,12 +125,12 @@ const FitnessCard = ({ item }) => (
       <p className="mt-3 text-gray-600 line-clamp-2">
         {item.description || "Premium fitness equipment"}
       </p>
-      <a
-        href={`/product/${item.id}`}
-        className="block mt-6 text-center py-4 bg-[#2E7D56] text-white rounded-xl hover:bg-[#256a47]"
+      <button
+        onClick={() => openWhatsApp(`Hi, I'm interested in ${item.name}`)}
+        className="block mt-6 w-full text-center py-4 bg-[#2E7D56] text-white rounded-xl hover:bg-[#256a47] transition"
       >
-        View Details
-      </a>
+        Ask on WhatsApp
+      </button>
     </div>
   </div>
 );
@@ -137,7 +153,7 @@ const ProductSection = ({ title, subtitle, items, bg }) => (
   </section>
 );
 
-/* ================= WHY CHOOSE & CTA (unchanged) ================= */
+/* ================= WHY CHOOSE ================= */
 const WhyChooseFitness = () => {
   const benefits = [
     { icon: <DumbbellIcon />, title: "Premium Equipment", desc: "Built for performance" },
@@ -168,6 +184,7 @@ const WhyChooseFitness = () => {
   );
 };
 
+/* ================= CALL TO ACTION ================= */
 const CallToAction = () => (
   <section className="py-24 px-6 bg-white">
     <div className="max-w-6xl mx-auto">
@@ -177,12 +194,20 @@ const CallToAction = () => (
           Start your fitness journey with premium gear and expert guidance.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-5">
-          <a href="/shop-fitness" className="px-10 py-4 bg-white text-[#2E7D56] rounded-xl font-semibold hover:scale-105 transition">
+          <a 
+            href="#fitness-products" 
+            className="px-10 py-4 bg-white text-[#2E7D56] rounded-xl font-semibold hover:scale-105 transition"
+          >
             Shop Fitness
           </a>
-          <a href="/personal-training" className="px-10 py-4 border-2 border-white rounded-xl font-semibold hover:bg-white hover:text-[#2E7D56] transition">
+          
+          {/* Updated WhatsApp Button */}
+          <button 
+            onClick={() => openWhatsApp("Hi, I would like training consultation")}
+            className="px-10 py-4 border-2 border-white rounded-xl font-semibold hover:bg-white hover:text-[#2E7D56] transition"
+          >
             Training Consultation
-          </a>
+          </button>
         </div>
       </div>
     </div>
@@ -216,7 +241,6 @@ const Fitness = () => {
     fetchProducts();
   }, []);
 
-  // Filter products
   const cardio = products.filter((i) => i.sub_category_name?.toLowerCase().includes("cardio"));
   const strength = products.filter((i) => i.sub_category_name?.toLowerCase().includes("strength"));
   const recovery = products.filter((i) =>

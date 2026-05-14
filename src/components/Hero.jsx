@@ -2,6 +2,16 @@ import React from 'react';
 import Mains from '../assets/Mains/Banner.png';
 
 const HeroSection = () => {
+  const whatsappNumber = "919876543210"; // ← Change to your actual WhatsApp number
+
+  const openWhatsApp = (message = "") => {
+    const encodedMessage = encodeURIComponent(message);
+    const url = encodedMessage 
+      ? `https://wa.me/${whatsappNumber}?text=${encodedMessage}` 
+      : `https://wa.me/${whatsappNumber}`;
+    window.open(url, '_blank');
+  };
+
   return (
     <section className="relative min-h-screen bg-[#FCFAF7] px-8 py-20 overflow-hidden">
 
@@ -38,11 +48,19 @@ const HeroSection = () => {
 
         {/* Buttons */}
         <div className="flex items-center justify-center gap-4 mb-10">
-          <button className="flex items-center gap-2 px-6 py-3 bg-[#2E7D56] text-white rounded-full font-medium hover:bg-[#256a47] transition-all">
+          {/* Primary Button */}
+          <button 
+            onClick={() => openWhatsApp("Hi, I'm interested in exploring wellness services.")}
+            className="flex items-center gap-2 px-6 py-3 bg-[#2E7D56] text-white rounded-full font-medium hover:bg-[#256a47] transition-all"
+          >
             Explore wellness <span>→</span>
           </button>
 
-          <button className="px-6 py-3 bg-[#F0EFE9] text-gray-800 rounded-full font-medium hover:bg-[#e4e2da] transition-all">
+          {/* Secondary Button */}
+          <button 
+            onClick={() => openWhatsApp("Hi, I'm interested in becoming a partner with Vivara.")}
+            className="px-6 py-3 bg-[#F0EFE9] text-gray-800 rounded-full font-medium hover:bg-[#e4e2da] transition-all"
+          >
             For partners
           </button>
         </div>
